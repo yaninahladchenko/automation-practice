@@ -10,6 +10,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import page.LandingPage;
 
+import java.io.File;
+
 import static java.lang.Thread.sleep;
 
 public class LoginTest {
@@ -31,7 +33,8 @@ public class LoginTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Yanina_Hladchenko\\IdeaProjects\\automation-practice\\src\\test\\resources\\chromedriver.exe");
+        File file = new File(getClass().getClassLoader().getResource("chromedriver.exe").getFile());
+        System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
         driver = new ChromeDriver();
         driver.get("https://makeup.com.ua/");
         landingPage = new LandingPage(driver);
